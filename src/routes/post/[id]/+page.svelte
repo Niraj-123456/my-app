@@ -52,7 +52,7 @@
 </div>
 
 <Drawer.Root bind:open={openEditDrawer}>
-	<Drawer.Content class="h-[95dvh] max-h-[95dvh]" ref={dialogContentRef}>
+	<Drawer.Content class="h-[95dvh] max-h-[95dvh]">
 		<Drawer.Header class="text-center">
 			<Drawer.Title>Edit Post</Drawer.Title>
 		</Drawer.Header>
