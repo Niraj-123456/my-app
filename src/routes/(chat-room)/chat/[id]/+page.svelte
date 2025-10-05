@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
-	import { fetchPostById, type Post } from '../../../services/post';
+	import { fetchPostById, type Post } from '../../../../services/post';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Trash, SquarePen } from '@lucide/svelte';
 	import * as Drawer from '$lib/components/ui/drawer/index';
@@ -9,6 +9,7 @@
 	import Input from '$lib/components/ui/input/input.svelte';
 	import Spinner from '$lib/components/Loading/Spinner.svelte';
 	import ScrollArea from '$lib/components/ui/scroll-area/scroll-area.svelte';
+	import ChatRoom from '$lib/components/ChatRoom/ChatRoom.svelte';
 
 	let postId = page.params?.id;
 	let loading = $state(true);
@@ -32,11 +33,11 @@
 	onMount(() => getPostDetail());
 </script>
 
-<div class="flex min-h-screen items-center justify-center">
+<div class="flex h-[inherit] w-full items-center justify-center overflow-hidden">
 	{#if loading}
 		<Spinner thickness={4} />
 	{:else}
-		<div class="flex flex-col items-center justify-center gap-2 text-center">
+		<!-- <div class="flex flex-col items-center justify-center gap-2 text-center">
 			<h3 class="text-xl font-semibold">{post?.title}</h3>
 			<p class="text-sm">{post?.body}</p>
 
@@ -47,7 +48,8 @@
 					<Trash />
 				</Button>
 			</div>
-		</div>
+		</div> -->
+		<ChatRoom />
 	{/if}
 </div>
 
