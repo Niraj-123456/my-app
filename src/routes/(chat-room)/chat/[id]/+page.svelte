@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte';
 	import { fetchPostById, type Post } from '../../../../services/post';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { Trash, SquarePen } from '@lucide/svelte';
 	import * as Drawer from '$lib/components/ui/drawer/index';
 	import Textarea from '$lib/components/ui/textarea/textarea.svelte';
 	import Input from '$lib/components/ui/input/input.svelte';
@@ -15,7 +14,6 @@
 	let loading = $state(true);
 	let post = $state<Post>();
 	let openEditDrawer = $state(false);
-	const dialogContentRef: HTMLElement | null = null;
 
 	const getPostDetail = async () => {
 		loading = true;
@@ -53,7 +51,11 @@
 	{/if}
 </div>
 
-<Drawer.Root bind:open={openEditDrawer}>
+<Drawer.Root
+	bind:open={openEditDrawer}
+	drawerId="edit-drawer"
+	onOpenChange={(val) => (openEditDrawer = val)}
+>
 	<Drawer.Content class="h-[95dvh] max-h-[95dvh]">
 		<Drawer.Header class="text-center">
 			<Drawer.Title>Edit Post</Drawer.Title>
@@ -76,7 +78,7 @@
 					</div>
 
 					<div>
-						<Drawer.NestedRoot shouldScaleBackground={false}>
+						<Drawer.NestedRoot drawerId="nested-edit-drawer" shouldScaleBackground={false}>
 							<Drawer.Trigger>Open Nested Drawer</Drawer.Trigger>
 							<Drawer.Content class="h-[93dvh] max-h-[93dvh]">
 								<div>this is nested drawer</div>

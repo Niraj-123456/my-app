@@ -36,7 +36,7 @@
 	});
 </script>
 
-<div class="h-full space-y-2 overflow-y-auto py-2" bind:this={virtualListEl}>
+<div class="h-full space-y-2 overflow-y-auto pb-2" bind:this={virtualListEl}>
 	<div style="position: relative; height: {$virtualizer.getTotalSize()}px; width: 100%;">
 		<div
 			class="divide-y"

@@ -13,7 +13,7 @@
 	const currentRoute = $derived(page.url.pathname);
 </script>
 
-<div id="bottom-navigation" class="w-full border-t border-gray-100 bg-white">
+<div class="bottom-navigation">
 	<div class="flex w-full justify-between px-6 py-4">
 		{#each items as item}
 			{@const Icon = item.icon}
@@ -37,7 +37,36 @@
 </div>
 
 <style lang="postcss">
-	#bottom-navigation {
+	.bottom-navigation {
+		position: relative;
+		overflow: hidden;
+		border-top: var(--theme-nav-border);
+		z-index: 1;
 		view-transition-name: bottom-navigation;
+	}
+
+	.bottom-navigation::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(153, 153, 153, 0.1) 100%);
+		backdrop-filter: blur(30px);
+		-webkit-backdrop-filter: blur(30px);
+		z-index: -1;
+	}
+
+	/* Optional overlay for a frosted look */
+	.bottom-navigation::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(153, 153, 153, 0.1) 100%);
+		z-index: -1;
 	}
 </style>

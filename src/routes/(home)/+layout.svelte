@@ -4,32 +4,64 @@
 	import { showSearch } from '../../store/common';
 	import { cn } from '$lib/utils';
 	import SearchInput from '$lib/components/common/search/SearchInput.svelte';
+	import Posts from '$lib/components/Posts/Posts.svelte';
+	import type { Snippet } from 'svelte';
+	import { page } from '$app/state';
+	import { isDesktop } from '../../store/responsiveStore';
+	import RouteHeader from '$lib/components/common/route-header/RouteHeader.svelte';
 
-	let { children } = $props();
+	type Props = {
+		children: Snippet;
+	};
+
+	let { children }: Props = $props();
 </script>
 
-<div id="container" class="relative w-full">
-	<div class="absolute top-0 w-full">
-		<Header />
-	</div>
-	<main class="absolute top-19 h-[82vh] w-full overflow-hidden">
-		<div
-			class={cn(
-				'w-full px-2 transition-all duration-300 ease-in-out',
-				$showSearch
-					? 'pointer-events-auto max-h-20 -translate-y-0 pt-2'
-					: 'pointer-events-none max-h-0 -translate-y-12'
-			)}
-		>
-			<SearchInput />
+<main id="container" class="relative flex h-full w-full overflow-hidden sm:divide-x">
+	<section class="relative h-full w-full max-w-lg" id={$isDesktop ? 'dk-left-pane' : 'left-pane'}>
+		<div class="absolute top-0 w-full">
+			<Header />
 		</div>
+		<div class="absolute top-15 h-[91dvh] w-full overflow-hidden">
+			<div
+				class={cn(
+					'w-full px-4 transition-all duration-300 ease-in-out',
+					$showSearch
+						? 'pointer-events-auto max-h-20 -translate-y-0 pt-2'
+						: 'pointer-events-none max-h-0 -translate-y-12'
+				)}
+			>
+				<SearchInput />
+			</div>
 
-		{@render children()}
-	</main>
-	<div class="fixed bottom-0 w-full">
-		<BottomNavigation />
-	</div>
-</div>
+			{#if $isDesktop}
+				<Posts />
+			{:else}
+				{@render children?.()}
+			{/if}
+		</div>
+		<div class="sticky top-full w-full">
+			<BottomNavigation />
+		</div>
+	</section>
+
+	<section class="hidden w-full sm:flex" id={$isDesktop ? 'dk-right-pane' : 'right-pane'}>
+		{#if page.url.pathname === '/' && $isDesktop}
+			Welcome content
+		{:else}
+			<div class="h-full w-full">
+				<RouteHeader />
+				{@render children?.()}
+			</div>
+		{/if}
+	</section>
+</main>
 
 <style lang="postcss">
+	#dk-left-pane {
+		view-transition-name: dk-left-pane;
+	}
+	#dk-right-pane {
+		view-transition-name: dk-right-pane;
+	}
 </style>

@@ -133,19 +133,27 @@
 }
 
 html:active-view-transition-type(forwards) {
-	&::view-transition-old(root) {
+	&::view-transition-old(main) {
 		animation-name: slide-out-to-left;
+		-webkit-backdrop-filter: blur(37.520660400390625px);
+		backdrop-filter: blur(37.520660400390625px);
 	}
-	&::view-transition-new(root) {
+	&::view-transition-new(main) {
 		animation-name: slide-in-from-right;
+		-webkit-backdrop-filter: blur(37.520660400390625px);
+		backdrop-filter: blur(37.520660400390625px);
 	}
 }
 html:active-view-transition-type(backwards) {
-	&::view-transition-old(root) {
+	&::view-transition-old(main) {
 		animation-name: slide-out-to-right;
+		-webkit-backdrop-filter: blur(37.520660400390625px);
+		backdrop-filter: blur(37.520660400390625px);
 	}
-	&::view-transition-new(root) {
+	&::view-transition-new(main) {
 		animation-name: slide-in-from-left;
+		-webkit-backdrop-filter: blur(37.520660400390625px);
+		backdrop-filter: blur(37.520660400390625px);
 	}
 }
 
@@ -180,4 +188,8 @@ html:active-view-transition-type(backwards) {
 	to {
 		right: 0%;
 	}
+}
+
+::view-transition-new(chat-header) {
+	opacity: 1;
 }

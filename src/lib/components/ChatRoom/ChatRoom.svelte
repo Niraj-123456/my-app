@@ -23,7 +23,7 @@
 
 	onMount(() => {
 		const chatFooter = document.querySelector<HTMLElement>('#chatInputFooter');
-		const layoutViewport = document.getElementById('layoutViewport');
+		const layoutViewport = document.getElementById('layout-viewport');
 		const visualViewport = window.visualViewport;
 
 		if (!visualViewport || !chatFooter || !layoutViewport || !chatViewport) return;

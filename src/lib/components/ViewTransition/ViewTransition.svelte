@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
 
-	const routeOrder = ['/', '/about', '/profile', '/more'];
+	const routeOrder = ['/', '/friends', '/profile', '/more'];
 
 	function getRouteIndex(path: string) {
 		return routeOrder.indexOf(path.split('?')[0]); // ignore query params
+	}
+
+	function isSiblingRoute(path: string) {
+		return routeOrder.includes(path);
 	}
 
 	onNavigate((navigation) => {
@@ -30,11 +34,28 @@
 
 			direction = toIndex > fromIndex ? 'forwards' : 'backwards';
 		}
-		console.log('direction', direction);
+		const disableHeaderTransition = isSiblingRoute(fromPath) && isSiblingRoute(toPath);
+		console.log('disable header transition', disableHeaderTransition);
+
+		// Temporarily disable the header's transition
+		// const header = document.querySelector(
+		// 	'[data-view-transition-name="root-header"]'
+		// ) as HTMLElement;
+
+		// if (!disableHeaderTransition && header) {
+		// 	header.style.viewTransitionName = 'none';
+		// }
 
 		return new Promise((resolve) => {
 			document.startViewTransition({
-				update: resolve,
+				update: () => {
+					resolve();
+					// if (header) {
+					// 	requestAnimationFrame(() => {
+					// 		header.style.viewTransitionName = 'root-header';
+					// 	});
+					// }
+				},
 				types: [direction]
 			});
 		});
