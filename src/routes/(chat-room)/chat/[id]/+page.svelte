@@ -31,7 +31,7 @@
 	onMount(() => getPostDetail());
 </script>
 
-<div class="flex h-[inherit] w-full items-center justify-center overflow-hidden">
+<div class="flex h-full w-full items-center justify-center overflow-hidden">
 	{#if loading}
 		<Spinner thickness={4} />
 	{:else}

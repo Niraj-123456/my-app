@@ -26,7 +26,7 @@
 		<div class="absolute top-0 w-full">
 			<RootHeader />
 		</div>
-		<div class="absolute top-19 h-[85vh] w-full overflow-hidden">
+		<div class="absolute top-19 h-[83vh] w-full overflow-hidden">
 			<div
 				class={cn(
 					'w-full px-2 transition-all duration-300 ease-in-out',
@@ -51,7 +51,7 @@
 			class="relative flex h-full w-full flex-col overflow-hidden"
 		>
 			<div class="absolute top-0 w-full"><Header /></div>
-			<div class="absolute top-19 h-full max-h-[85vh] w-full">
+			<div class="absolute top-19 h-full max-h-[83.5vh] w-full">
 				{@render children()}
 			</div>
 			<div class="sticky top-full w-full">

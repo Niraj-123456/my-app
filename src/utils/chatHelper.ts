@@ -8,8 +8,12 @@ export const scrollToBottom = async (
 	if (!chatContainer) return;
 	await tick();
 
-	chatContainer.scrollTo({
-		top: chatContainer?.scrollHeight,
-		behavior
+	console.log('scroll top', chatContainer?.scrollTop);
+
+	requestAnimationFrame(() => {
+		chatContainer.scrollTo({
+			top: 0,
+			behavior
+		});
 	});
 };

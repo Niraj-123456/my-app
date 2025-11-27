@@ -22,7 +22,7 @@
 		<div class="absolute top-0 w-full">
 			<Header />
 		</div>
-		<div class="absolute top-15 h-[91dvh] w-full overflow-hidden">
+		<div class="absolute top-15 h-[92.9dvh] w-full overflow-hidden">
 			<div
 				class={cn(
 					'w-full px-4 transition-all duration-300 ease-in-out',
@@ -40,7 +40,7 @@
 				{@render children?.()}
 			{/if}
 		</div>
-		<div class="sticky top-full w-full">
+		<div class="fixed bottom-0 w-full">
 			<BottomNavigation />
 		</div>
 	</section>

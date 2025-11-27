@@ -6,24 +6,21 @@
 	import { scrollToBottom } from '../../../utils/chatHelper';
 	import Textarea from '../ui/textarea/textarea.svelte';
 	import { cn } from '$lib/utils';
+	import { tick } from 'svelte';
 
 	let message = $state('');
 	let open = $state(false);
 	let openNested = $state(false);
 
-	const handleSendMessage = () => {
-		console.log('message', message);
+	const handleSendMessage = async () => {
 		if (message === '') return;
 
 		const previousMessages = [...$messagesStore];
 
 		const updatedMessages = [...previousMessages, message];
-
-		console.log('updated messages', updatedMessages);
-
 		messagesStore.set(updatedMessages);
-
 		message = '';
+
 		scrollToBottom(undefined, 'smooth');
 	};
 </script>
