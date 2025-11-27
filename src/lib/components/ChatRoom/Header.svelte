@@ -18,7 +18,7 @@
 			</Avatar.Root>
 
 			<div>
-				<h3 class="font-medium">Niraj Lama {page.params?.id}</h3>
+				<h3 class="font-medium">Test User {page.params?.id}</h3>
 				<p class="text-[10px] text-gray-500">online</p>
 			</div>
 		</a>
